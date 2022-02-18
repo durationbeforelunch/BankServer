@@ -5,8 +5,10 @@ import com.bank.server.dto.AccountMinInfoDto;
 import com.bank.server.entity.Account;
 import com.bank.server.repository.AccountRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -19,6 +21,9 @@ import java.util.Optional;
 public class AccountService implements IAccountService {
 
     private final AccountRepository accountRepository;
+
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     @Override
     public ResponseEntity<Account> findById(Integer id) {
@@ -52,7 +57,7 @@ public class AccountService implements IAccountService {
         Account account = new Account();
 
         account.setUsername(accountCreateDto.getUsername());
-        account.setPassword(accountCreateDto.getPassword());
+        account.setPassword(passwordEncoder.encode(accountCreateDto.getPassword()));
         account.setEmail(accountCreateDto.getEmail());
         account.setLastLogin(Instant.now());
 
