@@ -22,7 +22,7 @@ public class Account {
     private String username;
 
     @Setter
-    @Column(name = "password", nullable = false, length = 128)
+    @Column(name = "password", nullable = false)
     private String password;
 
     @Setter

@@ -4,7 +4,7 @@ CREATE TABLE IF NOT EXISTS accounts
 (
     user_id    serial PRIMARY KEY,
     username   varchar(50) UNIQUE NOT NULL,
-    password   varchar(128)       NOT NULL,
+    password   varchar            NOT NULL,
     email      varchar(128)       NOT NULL,
     balance    decimal     default 0 CHECK ( balance >= 0 ),
     role       varchar(20) default 'USER',
