@@ -9,10 +9,7 @@ import java.time.Instant;
 
 @Getter
 @Entity
-@Table(name = "accounts", indexes = {
-        @Index(name = "accounts_email_key", columnList = "email", unique = true),
-        @Index(name = "accounts_username_key", columnList = "username", unique = true)
-})
+@Table(name = "accounts")
 public class Account {
 
     @Id
@@ -36,11 +33,21 @@ public class Account {
     @Column(name = "balance", precision = 131089)
     private BigDecimal balance = new BigDecimal(0);
 
-    @Column(name = "created_on", nullable = false)
+    @Setter
+    @Column(name = "role", length = 20)
+    @Enumerated(value = EnumType.STRING)
+    private Role role = Role.USER;
+
+    @Setter
+    @Column(name = "status", length = 20)
+    @Enumerated(value = EnumType.STRING)
+    private Status status = Status.ACTIVE;
+
+    @Column(name = "created_on")
     private Instant createdOn = Instant.now();
 
     @Setter
     @Column(name = "last_login")
-    private Instant lastLogin;
+    private Instant lastLogin = Instant.now();
 
 }
