@@ -11,6 +11,8 @@ public interface AccountRepository extends JpaRepository<Account, Integer> {
 
     @NonNull Optional<Account> findById(@NonNull Integer id);
 
+    @NonNull Optional<Account> findByUsername(@NonNull String username);
+
     @NonNull List<Account> findAll();
 
 }
