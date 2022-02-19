@@ -1,4 +1,4 @@
-package com.bank.server.controller;
+package com.bank.server.rest;
 
 import com.bank.server.dto.AccountCreateDto;
 import com.bank.server.dto.AccountMinInfoDto;

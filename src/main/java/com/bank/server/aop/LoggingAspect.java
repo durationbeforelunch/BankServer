@@ -9,19 +9,19 @@ import org.springframework.stereotype.Component;
 @Aspect @Component
 public class LoggingAspect {
 
-    @After("execution(* com.bank.server.controller.BankController.get* (..))")
+    @After("execution(* com.bank.server.rest.BankController.get* (..))")
     public void controllerGetAccountInfoLogger() {
         log.info("Retrieving Account Information");
     }
-    @After("execution(* com.bank.server.controller.BankController.createAccount (..))")
+    @After("execution(* com.bank.server.rest.BankController.createAccount (..))")
     public void controllerCreateNewAccountLogger() {
         log.info("Creating New Account");
     }
-    @After("execution(* com.bank.server.controller.BankController.deleteAccount (..))")
+    @After("execution(* com.bank.server.rest.BankController.deleteAccount (..))")
     public void controllerDeleteAccountLogger() {
         log.info("Deleting Account");
     }
-    @After("execution(* com.bank.server.controller.BankController.patchAccountInfo(..))")
+    @After("execution(* com.bank.server.rest.BankController.patchAccountInfo(..))")
     public void controllerPatchAccountLogger() {
         log.info("Patching Account info");
     }

@@ -1,4 +1,4 @@
-package com.bank.server.controller;
+package com.bank.server.rest;
 
 import com.bank.server.service.IPaymentService;
 import lombok.RequiredArgsConstructor;
