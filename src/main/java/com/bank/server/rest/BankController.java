@@ -5,7 +5,6 @@ import com.bank.server.dto.AccountMinInfoDto;
 import com.bank.server.entity.Account;
 import com.bank.server.service.IAccountService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
@@ -36,12 +35,12 @@ public class BankController {
         return accountService.findAll();
     }
 
-    @PostMapping("/add")
+/*    @PostMapping("/add")
     @ResponseStatus(HttpStatus.CREATED)
     @PreAuthorize("hasAuthority('developers:write')")
-    public AccountMinInfoDto createAccount(@RequestBody AccountCreateDto account) {
+    public AccountMinInfoDto createAccount(@ModelAttribute("account") AccountCreateDto account) {
         return accountService.createAccount(account);
-    }
+    }*/
 
     @DeleteMapping("/account/{id}")
     @PreAuthorize("hasAuthority('developers:write')")
