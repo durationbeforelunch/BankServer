@@ -18,11 +18,11 @@
         <div th:if="${param.logout}">
             <p class="text-warning">You've been logged out!</p>
         </div>
-        <form th:action="@{/login}" method="post" style="max-width: 350px; margin: 0 auto;">
+        <form th:object="${account}" th:action="@{/login}" method="post" style="max-width: 350px; margin: 0 auto;">
             <div class="border border-secondary p-3 rounded">
                 <p>Access to server</p>
                 <p>
-                    <input type="text" name="username" class="form-control" placeholder="Username" required/>
+                    <input th:field="*{username}" type="text" name="username" class="form-control" placeholder="Username" required/>
                 </p>
                 <p>
                     <input type="password" name="password" class="form-control" placeholder="Password" required/>
