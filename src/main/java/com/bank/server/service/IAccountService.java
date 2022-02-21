@@ -3,20 +3,24 @@ package com.bank.server.service;
 import com.bank.server.dto.AccountCreateDto;
 import com.bank.server.dto.AccountMinInfoDto;
 import com.bank.server.entity.Account;
+import com.bank.server.exception.AccountAlreadyExists;
+import com.bank.server.exception.AccountNotFoundException;
 import org.springframework.http.ResponseEntity;
 
 import java.util.List;
 
 public interface IAccountService {
 
-    ResponseEntity<Account> findById(Integer id);
+    Account findById(Integer id) throws AccountNotFoundException;
+
+    Account findByUsername(String username) throws AccountNotFoundException;
 
     List<AccountMinInfoDto> findAll();
 
-    AccountMinInfoDto createAccount(AccountCreateDto accountCreateDto);
+    AccountMinInfoDto createAccount(AccountCreateDto accountCreateDto) throws AccountAlreadyExists;
 
-    ResponseEntity<String> deleteAccountById(Integer id);
+    void deleteAccountById(Integer id) throws AccountNotFoundException;
 
-    ResponseEntity<Account> patchAccountInfo(Integer id, AccountCreateDto dto);
+    Account patchAccountInfo(Integer id, AccountCreateDto dto) throws AccountNotFoundException;
 
 }
