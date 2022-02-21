@@ -5,6 +5,12 @@ import org.aspectj.lang.annotation.After;
 import org.aspectj.lang.annotation.Aspect;
 import org.springframework.stereotype.Component;
 
+/*
+*
+* Небольшой AOP логгер
+*
+* */
+
 @Log4j2
 @Aspect @Component
 public class LoggingAspect {
@@ -13,7 +19,7 @@ public class LoggingAspect {
     public void controllerGetAccountInfoLogger() {
         log.info("Retrieving Account Information");
     }
-    @After("execution(* com.bank.server.rest.BankController.createAccount (..))")
+    @After("execution(* com.bank.server.controller.FrontController.registerUserAccount (..))")
     public void controllerCreateNewAccountLogger() {
         log.info("Creating New Account");
     }

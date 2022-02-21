@@ -8,6 +8,12 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+/*
+*
+* Имплементация UserDetailsService для конфига Spring Security маппит сущности в экземпляры UserDetails
+*
+* */
+
 @Service
 @RequiredArgsConstructor
 public class AccountDetailsServiceImplementation implements UserDetailsService {

@@ -5,6 +5,11 @@ import lombok.Getter;
 
 import java.io.Serializable;
 
+/*
+*
+* Тестовый dto возвращает в rest контроллерах минимальное количество информации
+*
+* */
 @Getter
 public class AccountMinInfoDto implements Serializable {
 

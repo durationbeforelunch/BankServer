@@ -7,6 +7,12 @@ import lombok.Setter;
 
 import java.io.Serializable;
 
+/*
+*
+* Обычная Dto использующаяся для регистрации пользователя или редактирования имеющихся Entity
+*
+* */
+
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
