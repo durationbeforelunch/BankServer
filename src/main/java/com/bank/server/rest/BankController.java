@@ -3,8 +3,10 @@ package com.bank.server.rest;
 import com.bank.server.dto.AccountCreateDto;
 import com.bank.server.dto.AccountMinInfoDto;
 import com.bank.server.entity.Account;
+import com.bank.server.exception.AccountNotFoundException;
 import com.bank.server.service.IAccountService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
@@ -17,7 +19,7 @@ import java.util.List;
 *
 * */
 
-@RestController
+//@RestController
 @RequiredArgsConstructor
 public class BankController {
 
@@ -27,19 +29,30 @@ public class BankController {
     @GetMapping("/account/{id}")
     @PreAuthorize("hasAuthority('developers:write')")
     public ResponseEntity<Account> getAccountInfo(@PathVariable Integer id) {
-        return accountService.findById(id);
+
+        try {
+            return ResponseEntity.ok(
+                  accountService.findById(id)
+            );
+        } catch (AccountNotFoundException e) {
+            return new ResponseEntity<>(e.getHttpStatus());
+        }
     }
 
     // Маппинг для обновления некоторой информации в сущности
     @PatchMapping("/account/{id}")
     @PreAuthorize("hasAuthority('developers:write')")
     public ResponseEntity<Account> patchAccountInfo(@PathVariable Integer id, @RequestBody AccountCreateDto accountCreateDto) {
-        return accountService.patchAccountInfo(id, accountCreateDto);
+        try {
+            return ResponseEntity.ok(accountService.patchAccountInfo(id, accountCreateDto));
+        } catch (AccountNotFoundException e) {
+            return new ResponseEntity<>(e.getHttpStatus());
+        }
     }
     // Маппинг для получения минимальной информации по всем сущностям
     @GetMapping("/all")
     @PreAuthorize("hasAuthority('developers:read')")
-    public List<AccountMinInfoDto> getAllAccounts() {
+    public List<Account> getAllAccounts() {
         return accountService.findAll();
     }
 
@@ -53,8 +66,13 @@ public class BankController {
     // Маппинг для удаления сущности
     @DeleteMapping("/account/{id}")
     @PreAuthorize("hasAuthority('developers:write')")
-    public ResponseEntity<String> deleteAccount(@PathVariable Integer id) {
-        return accountService.deleteAccountById(id);
+    public ResponseEntity<HttpStatus> deleteAccount(@PathVariable Integer id) {
+        try {
+            accountService.deleteAccountById(id);
+            return new ResponseEntity<>(HttpStatus.OK);
+        } catch (AccountNotFoundException e) {
+            return new ResponseEntity<>(e.getHttpStatus());
+        }
     }
 
 }

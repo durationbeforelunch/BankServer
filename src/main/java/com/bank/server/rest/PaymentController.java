@@ -15,7 +15,7 @@ import java.math.BigDecimal;
 * rest контроллер, который отвечает за перевод средств
 *
 * */
-@RestController
+//@RestController
 @RequiredArgsConstructor
 public class PaymentController {
 
